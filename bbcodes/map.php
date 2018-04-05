@@ -111,6 +111,28 @@ if(!function_exists('map_sc')) {
 	}
 	add_bbcodes( 'map', 'map_sc' );
 }
+//[gmaps]
+if(!function_exists('iframemap_sc')) {
+	function iframemap_sc($atts, $content=""){
+		
+			extract(bbcodes_atts(array(
+				  'url' => '',
+				  'width' => '',
+				  'height' => ''
+			 ), $atts));
+			 
+			 $gmaps = ($url !='') ? 'src="'.$url.'"' : 'src="https://www.google.fr/maps"';
+			 $gmaps .= ($width !='') ? ' width="'.$width.'"' : ' width="100%"';
+			 $gmaps .= ($height !='') ? ' height="'.$height.'"' : ' height="450"';
+			 ob_start();
+?>
+		<iframe <?php echo $gmaps; ?> frameborder="0" style="border:0" allowfullscreen></iframe>
+<?php
+			$data = ob_get_clean();
+			return $data;
+	}
+	add_bbcodes( 'gmaps', 'iframemap_sc' );
+}
 
 
 //[mapbox-intern apitoken="MapBox API ACCESS TOKEN" idcss="MAPIDcss" lat="Latitude" lng="longitude" zoom="2" url="http://link.tld/file (without indicate .geojson)" /]
