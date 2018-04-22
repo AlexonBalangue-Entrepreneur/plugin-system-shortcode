@@ -57,7 +57,7 @@ class PlgSystemShortcode extends CMSPlugin
 			$this->app->setBody($data);			
 					
 		} else {	
-			$data = JResponse::getBody(); 
+			$data = $this->app->getBody(); 
 
 			$new_html_data = '';
 	
