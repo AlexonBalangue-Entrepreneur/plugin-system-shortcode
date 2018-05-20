@@ -93,7 +93,7 @@ if(!function_exists('bs4grid_sc')) {
 		$option .= ($pull !='') ? 'col-pull-'.$pull.' col-sm-pull-'.$pull.' col-md-pull-'.$pull.' col-lg-pull-'.$pull : '';
 		$option .= ($more !='') ? ' '.$more : '';
 
-		return '<div class="'.$option.'">'.do_bbcodes($content).'</div>';
+		return '<div class="col'.$option.'">'.do_bbcodes($content).'</div>';
 	}
 		
 	add_bbcodes( 'bs4grid', 'bs4grid_sc' );
@@ -125,7 +125,7 @@ if(!function_exists('bs4form_sc')) {
 
 	function bs4form_sc( $atts, $content) {
 		extract(bbcodes_atts(array(
-				'form' => 'form-horizontal',
+				'form' => '',
 				'action' => '',
 				'method' => 'post'
 		 ), $atts));

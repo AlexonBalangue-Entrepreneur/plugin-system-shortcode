@@ -2,7 +2,7 @@
 /**
  * @package	Plugin for Joomla!
  * @subpackage  plg_shortcode
- * @version	3.9.6
+ * @version	4.2.1
  * @author	AlexonBalangue.me
  * @copyright	(C) 2012-2016 Alexon Balangue. All rights reserved.
  * @license	GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
@@ -25,7 +25,7 @@
 
         }
 		
-        public static function loadShortcodesOverwrite(){
+        public function loadShortcodesOverwrite(){
 
              if (!JFactory::getApplication()->isAdmin()) {
 
@@ -84,30 +84,41 @@
         * 
         * @param mixed $code
         * @return self
-        */
+        *
         public function addCodeJS($code){
             self::getInstance()->document->addScriptDeclaration($code);
             return self::getInstance();
         }
 		
-        /**
+        **
+        * Add Code custom tags
+        * 
+        * @param mixed $code
+        * @return self
+        *
+        public function addCodeTags($code){
+            self::getInstance()->document->addCustomTag($code);
+            return self::getInstance();
+        }
+		
+        **
         * Add Code CSS
         * 
         * @param mixed $code
         * @return self
-        */
+        *
 		
         public function addCodeCSS($code) {
             self::getInstance()->document->addStyleDeclaration($code);
             return self::getInstance();
         }
-        /**
+        **
         * Add URL (intern) Javascript
         * 
         * @param mixed $url
         * @param string $show
         * @return self
-        */
+        *
         public function addJS($url, $show = false){
 			if($show == true){
 				self::getInstance()->document->addScriptVersion($url);
@@ -118,13 +129,13 @@
             return self::getInstance();
         }
 		
-        /**
+        **
         * Add URL (intern) CSS
         * 
         * @param mixed $url
         * @param string $show
         * @return self
-        */
+        *
 		
         public function addCSS($url, $show = false){
 			if($show == true){
@@ -135,6 +146,7 @@
 			
             return self::getInstance();
         }
+		**/
 
         /**
         * Make string to slug

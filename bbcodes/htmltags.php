@@ -2,7 +2,7 @@
 /**
  * @package	Plugin for Joomla!
  * @subpackage  plg_shortcode
- * @version	4.1.1
+ * @version	4.2.1
  * @author	AlexonBalangue.me
  * @copyright	(C) 2012-2015 Alexon Balangue. All rights reserved.
  * @license	GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
@@ -10,6 +10,7 @@
 
 //no direct accees
 defined ('_JEXEC') or die('resticted aceess');
+
 
 if(!function_exists('address_sc')) {
 
@@ -54,9 +55,9 @@ if(!function_exists('source_sc')) {
 		 ), $atts));
 		 
 		$option = ($media !='') ? ' media="'.$media.'"' : '';
-		$option = ($src !='') ? ' src="'.$src.'"' : '';
-		$option = ($type !='') ? ' type="'.$type.'"' : '';
-		$option = ($id !='') ? ' id="'.$id.'"' : '';
+		$option .= ($src !='') ? ' src="'.$src.'"' : '';
+		$option .= ($type !='') ? ' type="'.$type.'"' : '';
+		$option .= ($id !='') ? ' id="'.$id.'"' : '';
 		$option .= ($class !='') ? ' class="'.$class.'"' : '';
 		$option .= ($style !='') ? ' style="'.$style.'"' : '';
 		$option .= ($js !='') ? ' '.$js : '';
@@ -1800,9 +1801,9 @@ if(!function_exists('base_sc')) {
 				'mdataprop' => ''
 		 ), $atts));
 		 
-		$option .= ($link !='') ? ' href="'.$link.'"' : '';
+		$option = ($link !='') ? ' href="'.$link.'"' : '';
 		$option .= ($target !='') ? ' target="'.$target.'"' : '';
-		$option = ($id !='') ? ' id="'.$id.'"' : '';
+		$option .= ($id !='') ? ' id="'.$id.'"' : '';
 		$option .= ($class !='') ? ' class="'.$class.'"' : '';
 		$option .= ($style !='') ? ' style="'.$style.'"' : '';
 		$option .= ($js !='') ? ' '.$js : '';
@@ -2177,8 +2178,10 @@ if(!function_exists('html_sc')) {
 		$option .= ($mdataprop !='') ? ' itemprop="'.$mdataprop.'"' : '';
 		/*AMP REQUISE*/
 		if($amp == 'yes') {
-			$data = '<html amp'.$option.'>'.do_bbcodes($content).'</html>';
-			$data .= JFactory::getDocument()->addCustomTag('<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript><script async src="https://cdn.ampproject.org/v0.js"></script>');
+			$data = '<html amp'.$option.'>';
+			$data .= '<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript><script async src="https://cdn.ampproject.org/v0.js"></script>';
+			$data .= do_bbcodes($content);
+			$data .= '</html>';
 		}else{
 			$data = '<html'.$option.'>'.do_bbcodes($content).'</html>';
 		}
