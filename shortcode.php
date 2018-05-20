@@ -12,11 +12,12 @@
 defined ('_JEXEC') or die;
 if(!defined('DS')) define('DS', DIRECTORY_SEPARATOR);# Add this code For Joomla 3.3.4+
 
-#use Joomla\CMS\Factory;
+use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Plugin\CMSPlugin;
-#use Joomla\CMS\Language\Text;
+use Joomla\CMS\Document\Document;
+use Joomla\CMS\Language\Text;
 
 class PlgSystemShortcode extends CMSPlugin
 {
@@ -48,7 +49,7 @@ class PlgSystemShortcode extends CMSPlugin
 
     public function onAfterRender()
     {
-		#$app = JFactory::getApplication();
+		$app = JFactory::getApplication();
 		$docs = $this->app->getDocument();
 		if( $this->app->isAdmin() ) {
 			#$data = JResponse::getBody();

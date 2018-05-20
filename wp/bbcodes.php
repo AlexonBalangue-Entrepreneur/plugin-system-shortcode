@@ -1,7 +1,7 @@
 <?php
     /**
     * WordPress API for creating bbcode like tags or what WordPress calls
-    * "bbcodess." The tag and attribute parsing or regular expression code is
+    * "bbcodes." The tag and attribute parsing or regular expression code is
     * based on the Textpattern tag parser.
     *
     * A few examples are below:
@@ -11,7 +11,7 @@
     * [bbcodes foo="bar"]content[/bbcodes]
     *
     * bbcodes tags support attributes and enclosed content, but does not entirely
-    * support inline bbcodess in other bbcodess. You will have to call the
+    * support inline bbcodes in other bbcodes. You will have to call the
     * bbcodes parser in your function to account for that.
     *
     * {@internal
@@ -28,7 +28,7 @@
     * @link http://codex.wordpress.org/bbcodes_API
     *
     * @package WordPress
-    * @subpackage bbcodess
+    * @subpackage bbcodes
     * @since 2.5
     */
 
@@ -40,7 +40,7 @@
     * @var array
     * @global array $shortcode->bbcodes_tags
     */
-    //$shortcode->bbcodes_tags = array();
+    $shortcode->bbcodes_tags = array();
 
     /**
     * Add hook for bbcodes tag.
@@ -112,23 +112,23 @@
     }
 
     /**
-    * Clear all bbcodess.
+    * Clear all bbcodes.
     *
     * This function is simple, it clears all of the bbcodes tags by replacing the
-    * bbcodess global by a empty array. This is actually a very efficient method
-    * for removing all bbcodess.
+    * bbcodes global by a empty array. This is actually a very efficient method
+    * for removing all bbcodes.
     *
     * @since 2.5
     * @uses $shortcode->bbcodes_tags
     */
-    function remove_all_bbcodess() {
+    function remove_all_bbcodes() {
         global $shortcode;
 
         $shortcode->bbcodes_tags = array();
     }
 
     /**
-    * Search content for bbcodess and filter bbcodess through their hooks.
+    * Search content for bbcodes and filter bbcodes through their hooks.
     *
     * If there are no bbcodes tags defined, then the content will be returned
     * without any filtering. This might cause issues when plugins are disabled but
@@ -136,10 +136,10 @@
     *
     * @since 2.5
     * @uses $shortcode->bbcodes_tags
-    * @uses get_bbcodes_regex() Gets the search pattern for searching bbcodess.
+    * @uses get_bbcodes_regex() Gets the search pattern for searching bbcodes.
     *
-    * @param string $content Content to search for bbcodess
-    * @return string Content with bbcodess filtered out.
+    * @param string $content Content to search for bbcodes
+    * @return string Content with bbcodes filtered out.
     */
     function do_bbcodes($content) {
 
@@ -160,12 +160,12 @@
     *
     * The regular expression contains 6 different sub matches to help with parsing.
     *
-    * 1 - An extra [ to allow for escaping bbcodess with double [[]]
+    * 1 - An extra [ to allow for escaping bbcodes with double [[]]
     * 2 - The bbcodes name
     * 3 - The bbcodes argument list
     * 4 - The self closing /
     * 5 - The content of a bbcodes when it wraps some content.
-    * 6 - An extra ] to allow for escaping bbcodess with double [[]]
+    * 6 - An extra ] to allow for escaping bbcodes with double [[]]
     *
     * @since 2.5
     * @uses $shortcode->bbcodes_tags
@@ -181,7 +181,7 @@
         // Also, see bbcodes_unautop() and bbcodes.js.
         return
         '\\['                              // Opening bracket
-        . '(\\[?)'                           // 1: Optional second opening bracket for escaping bbcodess: [[tag]]
+        . '(\\[?)'                           // 1: Optional second opening bracket for escaping bbcodes: [[tag]]
         . "($tagregexp)"                     // 2: bbcodes name
         . '(?![\\w-])'                       // Not followed by word character or hyphen
         . '('                                // 3: Unroll the loop: Inside the opening bbcodes tag
@@ -207,7 +207,7 @@
         .         '\\[\\/\\2\\]'             // Closing bbcodes tag
         .     ')?'
 . ')'
-        . '(\\]?)';                          // 6: Optional second closing brocket for escaping bbcodess: [[tag]]
+        . '(\\]?)';                          // 6: Optional second closing brocket for escaping bbcodes: [[tag]]
     }
 
     /**
@@ -242,7 +242,7 @@
     }
 
     /**
-    * Retrieve all attributes from the bbcodess tag.
+    * Retrieve all attributes from the bbcodes tag.
     *
     * The attributes list has the attribute name as the key and the value of the
     * attribute as the value in the key/value pair. This allows for easier
@@ -313,7 +313,7 @@
     * @param string $content Content to remove bbcodes tags.
     * @return string Content without bbcodes tags.
     */
-    function strip_bbcodess( $content ) {
+    function strip_bbcodes( $content ) {
         global $shortcode;
 
         if (empty($shortcode->bbcodes_tags) || !is_array($shortcode->bbcodes_tags))
@@ -334,9 +334,9 @@
     }
 
  /**
- * Don't auto-p wrap bbcodess that stand alone
+ * Don't auto-p wrap bbcodes that stand alone
  *
- * Ensures that bbcodess are not wrapped in <<p>>...<</p>>.
+ * Ensures that bbcodes are not wrapped in <<p>>...<</p>>.
  *
  * @since 2.9.0
  *

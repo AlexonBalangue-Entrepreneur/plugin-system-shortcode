@@ -11,9 +11,12 @@
     //no direct accees
     defined ('_JEXEC') or die('resticted aceess');
 
-    jimport('joomla.filesystem.file');
-    jimport('joomla.filesystem.folder');
+	use Joomla\CMS\Filesystem;
 
+	JLoader::import('joomla.filesystem.file');
+    JLoader::import('joomla.filesystem.folder');
+	
+	
     class Shortcodes {
 
         private static $_instance;
@@ -29,11 +32,9 @@
 
              if (!JFactory::getApplication()->isAdmin()) {
 
-                if( JVERSION >= 3 ){
                     if (!class_exists('JViewLegacy', false))  self::getInstance()->Import('wp/joomla/viewlegacy.php');
-                    if (!class_exists('JModuleHelper', false)) self::getInstance()->Import('wp/joomla/helper.php'); 
+                    if (!class_exists('ModuleHelper', false)) self::getInstance()->Import('wp/joomla/ModuleHelper-v2.php'); 
 
-                } 
             }
 
             return self::getInstance();
@@ -204,7 +205,7 @@
 
             $bbcodes = array_unique($bbcodes);
 
-            self::getInstance()->Import('wp/bbcodes.php', self::getInstance());
+            self::getInstance()->Import('wp/bbcodes-v2.php', self::getInstance());
 
             foreach($bbcodes as $bbcode  ) self::getInstance()->Import('bbcodes/'.$bbcode);
 
