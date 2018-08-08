@@ -20,6 +20,7 @@ if(!function_exists('badgelxw_sc')) {
 				'parent' => '',
 				'category' => '',
 				'entreprise' => '',
+				'css' => '',
 		/****Embed code*****/
 				'showembed' => ''
 		 ), $atts));
@@ -28,11 +29,12 @@ if(!function_exists('badgelxw_sc')) {
 		$LivingxWorld = ($parent !='') ? $parent.'/' : '';
 		$LivingxWorld .= ($category !='') ? $category.'/' : '';
 		$LivingxWorld .= ($entreprise !='') ? $entreprise.'.html' : 'index.html';
+		$style_img = ($css !='') ? ' class="'.$css.'"' : '';
 		$embeds = ($showembed !='') ? $showembed : 'no';
 		ob_start();
 			echo '<img src="https://business.livingxworld.com/advice/'.$LivingxWorld.'" alt="Note attribuer par LivingxWorld.com" itemprop="image">';
 			if($embeds == 'yes'){
-				echo '<textarea cols="40" rows="6"><a href="'.$urls.'" rel="next" target="_top" itemprop="url"><img src="https://business.livingxworld.com/advice/'.$LivingxWorld.'" alt="Note attribuer par livingxworld.com" itemprop="image" /></a></textarea>';
+				echo '<textarea cols="40" rows="6"><a href="'.$urls.'" rel="next" target="_top" itemprop="url"><img src="https://business.livingxworld.com/advice/'.$LivingxWorld.'"'.$style_img.' alt="Note attribuer par livingxworld.com" itemprop="image" /></a></textarea>';
 			}
 		
 		
