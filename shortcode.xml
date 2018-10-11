@@ -7,7 +7,7 @@
     <license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
     <authorEmail>contacter@alexonbalangue.me</authorEmail>
     <authorUrl>www.alexonbalangue.me</authorUrl>
-    <version>4.3</version>
+    <version>4.4 alpha 1</version>
     <description>PLG_SHORTCODE_XML_DESCRIPTION</description>
     <files>
 		<filename plugin="shortcode">shortcode.php</filename>
