@@ -2,22 +2,18 @@
 /**
  * @package	Plugin for Joomla!
  * @subpackage  plg_shortcode
- * @version	4.4 alpha 1
+ * @version	4.2.1
  * @author	AlexonBalangue.me
- * @copyright	(C) 2012-2018 Alexon Balangue. All rights reserved.
+ * @copyright	(C) 2012-2016 Alexon Balangue. All rights reserved.
  * @license	GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  */
 
     //no direct accees
     defined ('_JEXEC') or die('resticted aceess');
-//use Joomla\CMS;
-use Joomla\CMS\Filesystem\File;
-use Joomla\CMS\Filesystem\Folder;
-use Joomla\CMS\Factory;
-use Joomla\CMS\Application;
 
-\JLoader::import('joomla.filesystem.file');
-\JLoader::import('joomla.filesystem.path');
+    jimport('joomla.filesystem.file');
+    jimport('joomla.filesystem.folder');
+
     class Shortcodes {
 
         private static $_instance;
@@ -30,9 +26,8 @@ use Joomla\CMS\Application;
         }
 		
         public function loadShortcodesOverwrite(){
-			
-			$app = Factory::getApplication();
-             if (!$app->isAdmin()) {
+
+             if (!JFactory::getApplication()->isAdmin()) {
 
                 if( JVERSION >= 3 ){
                     if (!class_exists('JViewLegacy', false))  self::getInstance()->Import('wp/joomla/viewlegacy.php');
@@ -63,8 +58,7 @@ use Joomla\CMS\Application;
 		*/
         public static function getDocument($key=false)
         {
-			$app = Factory::getApplication();
-            self::getInstance()->document = $app;
+            self::getInstance()->document = JFactory::getDocument();
             $doc = self::getInstance()->document;
             if( is_string($key) ) return $doc->$key;
 
@@ -85,6 +79,75 @@ use Joomla\CMS\Application;
             return self::getInstance()->frameworkPath($base);
         }
 		
+        /**
+        * Add Code Javascript
+        * 
+        * @param mixed $code
+        * @return self
+        *
+        public function addCodeJS($code){
+            self::getInstance()->document->addScriptDeclaration($code);
+            return self::getInstance();
+        }
+		
+        **
+        * Add Code custom tags
+        * 
+        * @param mixed $code
+        * @return self
+        *
+        public function addCodeTags($code){
+            self::getInstance()->document->addCustomTag($code);
+            return self::getInstance();
+        }
+		
+        **
+        * Add Code CSS
+        * 
+        * @param mixed $code
+        * @return self
+        *
+		
+        public function addCodeCSS($code) {
+            self::getInstance()->document->addStyleDeclaration($code);
+            return self::getInstance();
+        }
+        **
+        * Add URL (intern) Javascript
+        * 
+        * @param mixed $url
+        * @param string $show
+        * @return self
+        *
+        public function addJS($url, $show = false){
+			if($show == true){
+				self::getInstance()->document->addScriptVersion($url);
+			} else {
+				self::getInstance()->document->addScript($url);
+			}
+			
+            return self::getInstance();
+        }
+		
+        **
+        * Add URL (intern) CSS
+        * 
+        * @param mixed $url
+        * @param string $show
+        * @return self
+        *
+		
+        public function addCSS($url, $show = false){
+			if($show == true){
+				self::getInstance()->document->addStyleSheetVersion($url);
+			} else {
+				self::getInstance()->document->addStyleSheet($url);
+			}
+			
+            return self::getInstance();
+        }
+		**/
+
         /**
         * Make string to slug
         * 

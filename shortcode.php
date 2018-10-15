@@ -2,7 +2,7 @@
 /**
  * @package	Plugin for Joomla!
  * @subpackage  plg_shortcode
- * @version	4.4 alpha 1
+ * @version	4.2.1
  * @author	AlexonBalangue.me
  * @copyright	(C) 2012-2015 Alexon Balangue. All rights reserved.
  * @license	GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
@@ -10,34 +10,26 @@
 
 //no direct accees
 defined ('_JEXEC') or die;
-
+if(!defined('DS')) define('DS', DIRECTORY_SEPARATOR);# Add this code For Joomla 3.3.4+
 use Joomla\CMS\Factory;
+//use Joomla\CMS\Uri\Uri;
+//use Joomla\CMS\HTML\HTMLHelper;
+//use Joomla\CMS\Language\Text;
 use Joomla\CMS\Application;
 use Joomla\CMS\Document;
-use Joomla\CMS\Language\Text;
-use Joomla\CMS\Plugin\CMSPlugin;
-use Joomla\Uri\Uri;
-use Joomla\CMS\Language\LanguageHelper;
 
-if(!defined('DS')) define('DS', DIRECTORY_SEPARATOR);# Add this code For Joomla 3.3.4+
-/*
-\JLoader::import('joomla.filesystem.file');
-\JLoader::import('joomla.filesystem.path');
-*/
 jimport('joomla.plugin.plugin');
 jimport( 'joomla.event.plugin' );
 
-
-class PlgSystemShortcode extends CMSPlugin
+class PlgSystemShortcode extends JPlugin
 {
 	protected $autoloadLanguage = true;
 	
 	//public function plgSystemShortcode(&$subject,$config)
 	public function __construct(&$subject,$config)
 	{
-
 		parent::__construct($subject,$config); 
-		$this->loadLanguage();
+		//$this->loadLanguage();
 		
 	}
 	
@@ -53,18 +45,16 @@ class PlgSystemShortcode extends CMSPlugin
 
     public function onAfterRender()
     {
-		//$app = JFactory::getApplication();
 		$app = Factory::getApplication();
-		//$docs = JFactory::getDocument();
 		$docs = Factory::getDocument();
-		
 		if( $app->isAdmin() ) {
 			//$data = JResponse::getBody();
 			$data = $app->getBody();
-			//JResponse::setBody($data);	
-			$app->setBody($data)
+			//JResponse::setBody($data);			
+			$app->setBody($data);			
 					
 		} else {	
+			//$data = JResponse::getBody(); 
 			$data = $app->getBody(); 
 
 			$new_html_data = '';
