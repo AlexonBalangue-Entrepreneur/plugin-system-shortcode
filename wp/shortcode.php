@@ -10,7 +10,14 @@
 
     //no direct accees
     defined ('_JEXEC') or die('resticted aceess');
-
+	/*
+use Joomla\CMS\Factory;
+//use Joomla\CMS\Uri\Uri;
+//use Joomla\CMS\HTML\HTMLHelper;
+//use Joomla\CMS\Language\Text;
+use Joomla\CMS\Application;
+use Joomla\CMS\Document;
+*/
     jimport('joomla.filesystem.file');
     jimport('joomla.filesystem.folder');
 
