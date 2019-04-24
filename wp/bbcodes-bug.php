@@ -333,7 +333,7 @@
         return $m[1] . $m[6];
     }
 
- /**
+    /**
  * Don't auto-p wrap bbcodess that stand alone
  *
  * Ensures that bbcodess are not wrapped in <<p>>...<</p>>.

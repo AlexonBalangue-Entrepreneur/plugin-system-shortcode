@@ -2,9 +2,9 @@
 /**
  * @package	Plugin for Joomla!
  * @subpackage  plg_shortcode
- * @version	4.2.1
+ * @version	3.9.2
  * @author	AlexonBalangue.me
- * @copyright	(C) 2012-2016 Alexon Balangue. All rights reserved.
+ * @copyright	(C) 2012-2015 Alexon Balangue. All rights reserved.
  * @license	GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  */
 
@@ -25,7 +25,7 @@
 
         }
 		
-        public function loadShortcodesOverwrite(){
+        public static function loadShortcodesOverwrite(){
 
              if (!JFactory::getApplication()->isAdmin()) {
 
@@ -53,9 +53,13 @@
             } 
             return self::$_instance;
         }
-		/*
-		*	Function Joomla making string get*->key;
-		*/
+
+
+        /**
+        * Get Document
+        * 
+        * @param string $key
+        */
         public static function getDocument($key=false)
         {
             self::getInstance()->document = JFactory::getDocument();
@@ -64,6 +68,7 @@
 
             return $doc;
         }
+
         /**
         * Get Framework shortcodes path
         * 
@@ -78,75 +83,6 @@
         public static function pluginPath($base=false){
             return self::getInstance()->frameworkPath($base);
         }
-		
-        /**
-        * Add Code Javascript
-        * 
-        * @param mixed $code
-        * @return self
-        *
-        public function addCodeJS($code){
-            self::getInstance()->document->addScriptDeclaration($code);
-            return self::getInstance();
-        }
-		
-        **
-        * Add Code custom tags
-        * 
-        * @param mixed $code
-        * @return self
-        *
-        public function addCodeTags($code){
-            self::getInstance()->document->addCustomTag($code);
-            return self::getInstance();
-        }
-		
-        **
-        * Add Code CSS
-        * 
-        * @param mixed $code
-        * @return self
-        *
-		
-        public function addCodeCSS($code) {
-            self::getInstance()->document->addStyleDeclaration($code);
-            return self::getInstance();
-        }
-        **
-        * Add URL (intern) Javascript
-        * 
-        * @param mixed $url
-        * @param string $show
-        * @return self
-        *
-        public function addJS($url, $show = false){
-			if($show == true){
-				self::getInstance()->document->addScriptVersion($url);
-			} else {
-				self::getInstance()->document->addScript($url);
-			}
-			
-            return self::getInstance();
-        }
-		
-        **
-        * Add URL (intern) CSS
-        * 
-        * @param mixed $url
-        * @param string $show
-        * @return self
-        *
-		
-        public function addCSS($url, $show = false){
-			if($show == true){
-				self::getInstance()->document->addStyleSheetVersion($url);
-			} else {
-				self::getInstance()->document->addStyleSheet($url);
-			}
-			
-            return self::getInstance();
-        }
-		**/
 
         /**
         * Make string to slug
@@ -230,26 +166,6 @@
                 return self::getInstance()->frameworkPath() . '/'. $file;
             }
             return false;
-        }
-        /**
-        * Set Direction
-        * 
-        */
-        public static function direction() {
-            $name = self::getInstance()->theme() . '_direction';
-            self::getInstance()->resetCookie($name);
-            $require = JRequest::getVar('direction',  ''  , 'get');
-            if( !empty( $require ) ){
-                setcookie( $name, $require, time() + 3600, '/');
-                $current = $require;
-            } 
-            elseif( empty( $require ) and  isset( $_COOKIE[$name] )) {
-                $current = $_COOKIE[$name];
-            } else {
-                $current = self::getInstance()->getDocument()->direction;
-            }
-            self::getInstance()->getDocument()->direction = $current;
-            return $current;
         }
 
 
