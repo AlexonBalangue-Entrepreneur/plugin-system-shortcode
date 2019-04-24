@@ -26,13 +26,13 @@ if(!function_exists('badgelxw_sc')) {
 		 ), $atts));
 		 
 		$urls = ($url !='') ? $url : JURI::current();
-		//$LivingxWorld = ($parent !='') ? $parent.'/' : '';		$LivingxWorld = ($default !='') ? $default : 'logo.png';
+		//$LivingxWorld = ($parent !='') ? $parent.'/' : '';		$LivingxWorld = ($default !='') ? $default : 'assets/images/logo-small.png';
 		//$LivingxWorld .= ($category !='') ? $category.'/' : '';
 		//$LivingxWorld .= ($entreprise !='') ? $entreprise.'.html' : 'index.html';
 		$style_img = ($css !='') ? ' class="'.$css.'"' : '';
-		$embeds = ($showembed !='') ? $showembed : 'no';
+		$embeds = ($showembed !='') ? $showembed : 'yes';
 		ob_start();
-			echo '<img src="https://business.livingx.world/'.$LivingxWorld.'" alt="Badge de livingx.world" itemprop="image">';
+			echo '<a href="https://business.livingx.world"><img src="https://business.livingx.world/'.$LivingxWorld.'" alt="Badge de livingx.world" itemprop="image" /></a>';
 			if($embeds == 'yes'){
 				echo '<textarea cols="40" rows="6"><a href="'.$urls.'" rel="next" target="_top" itemprop="url"><img src="https://business.livingx.world/'.$LivingxWorld.'"'.$style_img.' alt="Badge de livingx.world" itemprop="image" /></a></textarea>';
 			}
