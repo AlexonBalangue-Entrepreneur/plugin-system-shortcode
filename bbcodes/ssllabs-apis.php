@@ -271,7 +271,7 @@ class sslLabsApi
 <?php
 		
 		if($provided == 'yes'){
-			echo '<br>Scan provided by <a target="_blank" href="https://www.ssllabs.com/ssltest/analyze.html?d='.$domains.'">Qualys SSL Labs</a> <a target="_blank" href="https://www.ssllabs.com/downloads/Qualys_SSL_Labs_Terms_of_Use.pdf">Terms and Conditions</a>';
+			echo '<br>Scan provided by <a target="_blank" href="https://www.ssllabs.com/index.html">Qualys SSL Labs</a> <a target="_blank" href="https://www.ssllabs.com/downloads/Qualys_SSL_Labs_Terms_of_Use.pdf">Terms and Conditions</a>';
 		} 
 		echo '</div>';
 		
