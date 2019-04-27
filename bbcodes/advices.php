@@ -17,22 +17,18 @@ if(!function_exists('badgelxw_sc')) {
 		extract(bbcodes_atts(array(
 		/****Images badge*****/
 				'url' => '',//not use this on your website indicate on LivingxWorld because will current link from on your website.
-				'parent' => '',
-				'category' => '',
-				'entreprise' => '',
+				'badge' => '',
 		/****Embed code*****/
 				'showembed' => ''
 		 ), $atts));
 		 
 		$urls = ($url !='') ? $url : JURI::current();
-		$LivingxWorld = ($parent !='') ? $parent.'/' : '';
-		$LivingxWorld .= ($category !='') ? $category.'/' : '';
-		$LivingxWorld .= ($entreprise !='') ? $entreprise.'.html' : 'index.html';
-		$embeds = ($showembed !='') ? $showembed : 'no';
+		$LivingxWorld = ($badge !='') ? $badge : 'assets/images/logo-small.png';
+		$embeds = ($showembed !='') ? $showembed : 'yes';
 		ob_start();
-			echo '<img src="https://business.livingxworld.com/advice/'.$LivingxWorld.'" alt="Note attribuer par LivingxWorld.com" itemprop="image">';
+			echo '<a href="https://business.livingx.world/"><img src="https://business.livingx.world/'.$LivingxWorld.'" alt="Badge par Livingx.World" itemprop="image"></a>';
 			if($embeds == 'yes'){
-				echo '<textarea cols="40" rows="6"><a href="'.$urls.'" rel="next" target="_top" itemprop="url"><img src="https://business.livingxworld.com/advice/'.$LivingxWorld.'" alt="Note attribuer par livingxworld.com" itemprop="image" /></a></textarea>';
+				echo '<textarea cols="40" rows="6"><a href="'.$urls.'" rel="next" target="_top" itemprop="url"><img src="https://business.livingx.world/'.$LivingxWorld.'" alt="badge par livingx.world" itemprop="image" /></a></textarea>';
 			}
 		
 		
